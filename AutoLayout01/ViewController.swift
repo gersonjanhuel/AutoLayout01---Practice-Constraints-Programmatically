@@ -21,7 +21,7 @@ class ViewController: UIViewController {
         setupSubviews()
         setupConstraints()
         
-        setupCardDetail(parentView: cardView1, withEjomi: "☝🏻", cardName: "One")
+        setupCardDetail(parentView: cardView1, withEjomi: "☝🏻", cardName: "One \nTwo \n Three")
         setupCardDetail(parentView: cardView2, withEjomi: "✌🏻", cardName: "Two")
         setupCardDetail(parentView: cardView3, withEjomi: "🤟🏻", cardName: "Three")
         setupCardDetail(parentView: cardView4, withEjomi: "✋🏻", cardName: "Five")
@@ -91,8 +91,9 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             cardContent1.topAnchor.constraint(equalTo: parentView.topAnchor, constant: 20),
             cardContent1.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
+            //cardContent1.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: -70),
             cardContent1.widthAnchor.constraint(equalTo: parentView.widthAnchor, constant: -40),
-            cardContent1.heightAnchor.constraint(equalTo: parentView.heightAnchor, constant: -70)
+            
         ])
         
         // set emoji
@@ -114,17 +115,23 @@ class ViewController: UIViewController {
         // set card name label
         let cardLabel = UILabel()
         cardLabel.text = cardName
+        cardLabel.numberOfLines = 0
         cardLabel.textAlignment = .center
+        cardLabel.backgroundColor = .gray
         
         parentView.addSubview(cardLabel)
         
         // setup card name constraints
         cardLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            cardLabel.topAnchor.constraint(equalTo: cardContent1.bottomAnchor, constant: 10),
+           // cardLabel.topAnchor.constraint(equalTo: cardContent1.bottomAnchor, constant: 10),
             cardLabel.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 20),
             cardLabel.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: -20),
+            cardLabel.bottomAnchor.constraint(equalTo: parentView.bottomAnchor, constant: -10),
+            
+            cardContent1.bottomAnchor.constraint(equalTo: cardLabel.topAnchor, constant: -10)
         ])
+        
         
     }
 
